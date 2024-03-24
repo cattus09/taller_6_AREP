@@ -73,4 +73,5 @@ La aplicación que describes tiene varios componentes interconectados
 
 ## Proyecto en AWS
 
+[link de video](https://youtu.be/EIr-3EMM09A)
 
