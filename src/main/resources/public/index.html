@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Form Example</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="styles.css">
+    <body>
+        <h1>Mensajes</h1>
+        <form action="/log">
+            <label for="name">MENSAJE:</label><br>
+            <input type="text" id="message" name="message" value=""><br><br>
+            <input type="button" value="Submit" onclick="loadGetMsg()">
+        </form> 
+        <div id="getrespmsg"></div>
+
+        <script>
+            function loadGetMsg() {
+                let nameVar = document.getElementById("message").value;
+                const xhttp = new XMLHttpRequest();
+                xhttp.onload = function() {
+                    document.getElementById("getrespmsg").innerHTML =
+                    this.responseText;
+                }
+                xhttp.open("GET", "/log?value="+nameVar);
+                xhttp.send();
+            }
+        </script>
+
+    </body>
+</html>

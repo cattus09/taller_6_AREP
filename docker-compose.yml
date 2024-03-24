@@ -1,0 +1,70 @@
+version: '3'
+services:
+  mongo-db:
+    image: mongo:3.6.1
+    container_name: mongo-db
+    volumes:
+      - mongodb:/data/db
+      - mongodb_config:/data/configdb
+    ports:
+      - '27017:27017'
+    command: mongod
+
+  service1:
+    
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: service1
+    environment:
+      - PORT=4567
+    ports:
+      - "35001:4567"
+    networks:
+      - default
+
+  service2:
+    
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: service2
+    environment:
+      - PORT=4567
+    ports:
+      - "35002:4567"
+    networks:
+      - default
+
+  service3:
+    
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: service3
+    environment:
+      - PORT=4567
+    ports:
+      - "35003:4567"
+    networks:
+      - default
+
+  robin:
+    
+    build:
+      context: .
+      dockerfile: Dockerfile2
+    container_name: robin
+    environment:
+      - PORT=4568
+    ports:
+      - "35000:4568"
+    networks:
+      - default
+
+networks:
+  default:
+
+volumes:
+  mongodb:
+  mongodb_config:
